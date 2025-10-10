@@ -1,0 +1,12 @@
+
+digraph G {
+    rankdir="LR"
+    start -> "4 choices" [label="Select suit
+for player 1"];
+    "4 choices" -> "3 choices" [label="Select suit
+for player 2"];
+    "3 choices" -> "2 choices" [label="Select suit
+for player 3"];
+    "2 choices" -> "1 choice" [label="Select suit
+for player 4"];
+}

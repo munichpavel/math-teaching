@@ -1,0 +1,20 @@
+
+digraph G {
+    rankdir="LR"
+    chair_choice_4 [label="4 choices"];
+    card_choice_4 [label="4 choices"];
+    card_choice_3 [label="..."]
+
+    start -> chair_choice_4 [label="Select player
+for seat 1"];
+    chair_choice_4 -> "3 choices" [label="Select player
+for seat 2"];
+    "3 choices" -> "2 choices" [label="Select player
+for seat 3"];
+    "2 choices" -> "1 choice" [label="Select player
+for seat 4"];
+    "1 choice" -> card_choice_4 [label="Select suit
+for player in seat 1"];
+    card_choice_4 -> card_choice_3 [label="Select suit
+for player in seat 2"];
+}
