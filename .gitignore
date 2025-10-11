@@ -1,0 +1,11 @@
+# Python environment
+.venv/
+.envrc
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Dev patterns
+_*.ipynb
+_*.py
+_*.sh
