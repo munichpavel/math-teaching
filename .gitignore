@@ -1,4 +1,4 @@
-# Python environment
+# Environment
 .venv/
 .envrc
 
@@ -9,3 +9,8 @@
 _*.ipynb
 _*.py
 _*.sh
+_*.md
+
+# Python
+
+__pycache__/
