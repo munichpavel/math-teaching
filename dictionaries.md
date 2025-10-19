@@ -18,8 +18,8 @@ heavy overlap with set theory
 | disjoint | disjunkt |
 | equals | je enako |
 | event | dogodek |
-| heads, tails (coin) | grb |
-| heads, tails (coin) | ??? |
+| heads, tails (coin) | cifra, grb |
+| heads, tails (coin) | glava, rep |
 | intersection | presek |
 | outcome | izid |
 | power / to the | potenza |
@@ -37,10 +37,10 @@ heavy overlap with set theory
 
 | English | Slovenšcina |
 |---------|-------------|
-| heads, tails (coin) | ??? |
 | disjoint | disjunkt |
 | event | dogodek |
-| heads, tails (coin) | grb |
+| heads, tails (coin) | cifra, grb |
+| heads, tails (coin) | glava, rep |
 | outcome | izid |
 | equals | je enako |
 | set of outcomes | množica izidov |
