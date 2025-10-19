@@ -17,6 +17,7 @@ heavy overlap with set theory
 | boundary condition | robni pogoj |
 | disjoint | disjunkt |
 | equals | je enako |
+| even, odd number | sod, liho število|
 | event | dogodek |
 | heads, tails (coin) | cifra, grb |
 | heads, tails (coin) | glava, rep |
@@ -52,6 +53,7 @@ heavy overlap with set theory
 | We write ... | Prepišemo ... |
 | intersection | presek |
 | boundary condition | robni pogoj |
+| even, odd number | sod, liho število|
 | variable | spremenljivka |
 | We claim ... | Trdimo ... |
 | We consider ... | Zamislimo si  ... |
