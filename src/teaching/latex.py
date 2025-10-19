@@ -17,7 +17,6 @@ def pdflatex_paths(latex_paths: list[Path], timeout: int = 10) -> None:
 
             # Check if compilation failed
             if result.returncode != 0:
-                stderr = result.stderr.decode()
                 stdout = result.stdout.decode()
 
                 # Check for common signs of missing files
