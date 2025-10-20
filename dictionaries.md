@@ -19,8 +19,8 @@ heavy overlap with set theory
 | equals | je enako |
 | even, odd number | sod, liho število|
 | event | dogodek |
-| heads, tails (coin) | cifra, grb |
 | heads, tails (coin) | glava, rep |
+| heads, tails (coin) | grb, cifra |
 | intersection | presek |
 | outcome | izid |
 | power / to the | potenza |
@@ -40,8 +40,8 @@ heavy overlap with set theory
 |---------|-------------|
 | disjoint | disjunkt |
 | event | dogodek |
-| heads, tails (coin) | cifra, grb |
 | heads, tails (coin) | glava, rep |
+| heads, tails (coin) | grb, cifra |
 | outcome | izid |
 | equals | je enako |
 | set of outcomes | množica izidov |
