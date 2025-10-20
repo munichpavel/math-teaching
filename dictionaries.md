@@ -11,6 +11,7 @@
 heavy overlap with set theory
 
 ### Ordered by English
+
 | English | Slovenšcina |
 |---------|-------------|
 | ??? | nabor |
