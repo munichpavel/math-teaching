@@ -1,0 +1,24 @@
+\subsubsection*{A solution for 1, $P(X=k)$}
+
+This is a geometric like process (a number of successive failures followed by a single success), except that the probability of success or failure changes each time.
+
+
+Now suppose $k \in \{1, \ldots, 4\}$. By Morphius' rules, ${X > k}$ means that the first $k$ draws were blue
+
+\begin{align*}
+P(X > k) &= \prod_{j=1}^k (j+1) = \frac{1}{(k+1)!}
+\end{align*}
+
+
+
+\subsubsection*{A solution with indicator functions for 2, $\text{E}(X)$}
+
+Let $I_j$ be the event that Neo draws again at step $j$. By construction, $X =\sum_{j=1}^\infty I_j$, and by linearity of expectation,
+
+\begin{align*}
+\text{E}(X) &= \sum_{j=1}^\infty E(I_j) \\
+&=  \sum_{j=1}^\infty P(X \geq j) \\
+&= \sum_{j=1}^\infty P(X > j-1) = \sum_{j=1}^\infty \frac{1}{j!}
+\end{align*}
+
+But $\sum_{j=1}^\infty \frac{1}{j!} = e - 1 \sim 1.718$, so $\text{E}(X) = e - 1$.

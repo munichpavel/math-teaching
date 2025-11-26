@@ -1,0 +1,19 @@
+\subsubsection*{A solution}
+
+Let $J_k$ be the event that the $k^{\text{th}}$ visitor gets their jacket back. By assumption of uniformity, $P(J_k) = 1/n$.
+
+Define the indicator function $I_k$ as
+\[
+I_k = 1 \text{ if } A_k \text{ occurs; else } 0
+\]
+In other words, $I_k$ is the indicator function for the $k^{\text{th}}$ person getting their correct jacket back.
+
+Since $X = I_1 + \ldots I_n$, we can use linearity of expectation to calculate
+\[
+E(X) = E\left(\sum_{j=1^n} I_j\right) = \sum_{j=1^n} E(I_j)
+\]
+but $E(I_j) = 1 \cdot 1/n + 0 \cdot (n-1) / n = 1/n$ for each $j$, so
+\[
+E(X) = n \cdot 1/n = 1
+\]
+Hence we expect one person to get their correct jacket back.

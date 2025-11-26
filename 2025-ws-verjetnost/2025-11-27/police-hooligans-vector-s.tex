@@ -1,0 +1,80 @@
+\subsubsection*{A solution}
+
+\textbf{A solution for 1}: Let's consider instead the positions of the police officers from left to right among the $r+h$ total positions along the line of hooligans and police.
+
+Define $j_{\ell} \in \{1, \ldots, h+r\}$ as the relative position of the $\ell^{\text{th}}$ police officer. For example, if we had $h=5, r=3$, the choice $j_1=1, j_2=3, j_3=4$ would mean police officers in the 1st, 3rd and 4th slots, i.e. PHHPPHHH.
+
+Such a choice of $j_1, \ldots, j_r$ uniquely determines the $(\xi_0, \ldots, \xi_r)$, since
+\begin{align*}
+\xi_0 &= j_1 - 1 \\
+\xi_1 &= j_2 - j_1 - 1 \\
+& \quad \vdots \\
+\xi_r &= h + r - j_r
+\end{align*}
+
+Conversely, to see that a fixed $\xi_0 = k_0, \ldots, \xi_r=k_r$ with $\sum k_i = h$ uniquely determines a choice of $j_1, \ldots, j_r$, $1 \leq j_1 < \ldots < j_r \leq r$, just solve the above (linear) equations for $j_1, \ldots, j_r$.
+
+Hence we have a bijection between $\xi_0 = k_0, \ldots, \xi_r=k_r$ with $\sum k_i = h$ and $j_1, \ldots, j_r$, $1 \leq j_1 < \ldots < j_r \leq r$.
+Since the order of police officers is unimportant, and each choice of $j_1, \ldots, j_r$, $1 \leq j_1 < \ldots < j_r \leq r$ is equally likely (by assumption A3 of uniformly distributed placements of hooligans and police on a line), we have
+\[
+P(\xi_0 = k_0, \ldots, \xi_r = k_r) = \frac{1}{\binom{h+r}{r}} = \frac{h! r!}{(h+r)!}
+\]
+if $k_0 + \ldots k_r = r$; otherwise $P(\xi_0 = k_0, \ldots, \xi_r = k_r) = 0$.
+
+\textbf{A solution for 2}: From the lectures we have for discrete probability vectors (aka multivariable discrete random variables)
+\begin{align*}
+P(\xi_j = k) &= \sum_{\substack{k_1, \ldots, k_{j-1}, k_{j+1}, \ldots, k_r \in \{0, h\}, \\ \sum_{\ell: \ell !=j} k_\ell = h - k }} P(\xi_1 = k_1, \ldots, \xi_j = k, \ldots, \xi_r = k_r) \\
+&= \frac{h! r!}{(h + r)!} \sum_{\substack{k_1, \ldots, k_{j-1}, k_{j+1}, \ldots, k_r \in \{0, h\}, \\ \sum_{\ell: \ell !=j} k_\ell = h - k }} 1
+\end{align*}
+
+Before continuing, let's look at the concrete case as above with $h=5$, $r=3$ (5 hooligans, 3 police), and consider $P(\xi_1 = k)$. The summand on the right now includes terms $k_2, k_3 \in \{0, 3-1\}$ satisfying $k_2 + k_3 = h - k$. In other words, we have one fewer police officer, and k fewer hooligans, but otherwise the set-up is the same (also the bijection).
+
+In general, the same logic holds for general $h, r$, so we get
+\begin{align*}
+P(\xi_j = k_j) &= \frac{\binom{r + h - k - 1}{r - 1}}{\binom{r + h}{r}} \\
+&= \frac{h! r!}{(h + r)!} \binom{r + h - k - 1}{r - 1}\\
+ &= \frac{h! r!}{(h + r)!} \frac{(r + h - k- 1)!}{(r-1)! (h-k)!}\\
+ &= r \frac{h \cdot (h-1) \ldots (h-k+1)}{(r+h)(r+h-1) \ldots (r + h -k)}
+\end{align*}
+
+Note: it is not clear if the final form is prettier than the first line.
+
+\textbf{A solution for 3}: To prove that the $\xi_j$ are \emph{independent}, we must show, for all $r, h$ (number of police, hooligans, respectively) and for all $k_1, \ldots, k_h$, that
+\[
+P(\xi_0 = k_0, \ldots, \xi_r = k_r) = \prod P(\xi_\ell = k_\ell)
+\]
+
+To show that they are \emph{not independent} (or dependent), it suffices to find
+\begin{itemize}
+    \item a single choice of numbers of hooligans and police ($h, r$),
+    \item a single pair of indices $j \neq j'$ and
+    \item a single pair of $k_j, k_{j'}$ such that
+\end{itemize}
+\[
+P(\xi_j = k_j) \neq P(\xi_{j'} = k_{j'})
+\]
+
+Let's look first for an example that shows non-independence. In an exam, just go for one. I give multiple counterexamples for pedagogical purposes.
+
+Note that if $r$ or $h$ is 0, then all marginal probabilities are also 0, so these cases don't provide a counterexample for independence.
+
+First counterexample (more obvious, less clever): Take $r=1, h=2$ and consider $(\xi_0=0, x_1=2)$. Then our sample (event) space is $\{HHP, HPH, PHH\}$, and each outcome is equally probable.
+
+$P(\xi_0=0, x_1=2) = 1/3$
+
+while $P(\xi_0 = 0) = \frac{2}{3\cdot 2} = \frac{1}{3}$ and $P(\xi_1=3) = \frac{2}{3 \cdot 2} = \frac{1}{3}$ (you can also see these directly from our above comment about the outcome space and probabilities of elementary events being all identical), so we have found a case where
+\[
+P(\xi_0=0, \xi_1=2) = 1/3 \neq P(\xi_0=0) P(\xi_1=2) = 1/9
+\]
+hence the $\xi_\ell$ are not in general independent.
+
+Second counterexample (perhaps less obvious, arguably cleverer):
+
+Note that if $h>0$, for $r \geq 1$, $P(\xi_0 = h, \xi_1 = h) = 0$, as the $k_\ell$ values must sum to $h$. But
+\begin{align*}
+P(\xi_0=h)  &= \frac{\binom{r-1}{r-1}}{\binom{h+r}{r}} \\
+&= P(\xi_1=h)> 0
+\end{align*}
+hence the independence equality condition does not hold, and the random variables are dependent.
+
+And the third, arguably cleverest counterexample would be like the first, but taking $P(\xi_0 = 2, \xi_=2) = 0$, while each of the marginals $P(\xi_j) = 1/3$.

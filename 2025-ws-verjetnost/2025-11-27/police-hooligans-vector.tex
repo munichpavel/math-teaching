@@ -1,0 +1,32 @@
+\subsection{Exercise, discrete, random vectors}
+
+The police department in Berlin is doing computer simulations for how to manage the football hooligans after the upcoming game between FC Union Berlin and Dynamo Dresden. Assume that there will be
+\begin{itemize}
+    \item[A1:] $h \geq 1$ hooligans transferring at Suedkreuz Bahnhof from Olympiastadion, where the game is, to their train home to Dresden
+    \item[A2:] $r \geq 1$ police officers to monitor them
+    \item[A3:] the simulation only cares about the relative positions of hooligans and police along a line parallel to the incoming train
+    \item[A4:] the ordering of hooligans and police officers along this line is uniformly random on $h + r$ elements.
+\end{itemize}
+
+For example, if there were $h=5$ hooligans and $r=3$ police officers, then the outcomes (elements of $\Omega$), where P represents a police officer, and H a hooligan
+\begin{itemize}
+    \item PHHPPHHH, and
+    \item HHHPHPHP
+\end{itemize}
+are equally probable.
+
+For $k=1, \ldots r-1$, define the random variable $\xi_k$ as
+\[
+\xi_k = \text{number of hooligans between the } k^{\text{th}} \text{ and } (k+1)^{\text{st}} \text{ police officers}
+\]
+where we count from left to right, and define additionally
+\begin{itemize}
+    \item $\xi_0$ as the number of hooligans to the left of the first police officer,
+    \item $\xi_r$ as the number of hooligans to the right of the last police officer.
+\end{itemize}
+
+\begin{enumerate}
+    \item Determine the probability distribution function of the random vector $\Xi = (\xi_0, \ldots, \xi_r)$, i.e. $P(\xi_0 = k_0, \ldots, \xi_r = k_r)$ as a function of $k_0, \ldots, k_r$.
+    \item For a fixed $j \in \{0, \ldots, r\}$, determine the marginal probability distribution $P(\xi_j = k)$.
+    \item Are the component random variables $\xi_0, \ldots, \xi_r$ independent for all $r$ (and all $h$)?
+\end{enumerate}
