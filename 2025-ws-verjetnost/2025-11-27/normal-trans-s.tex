@@ -6,8 +6,8 @@ We calculate next, using $X = 5Z + 9$:
 \begin{align*}
 P(X \leq 0) &= P(5 Z + 9 \leq 0) \\
 &= P(Z \leq -9/5) \\
-&= 1 - P(Z < 9/5) \\
-&= 1 - P(Z \leq 9/5) \text{\, as }\{Z = 9/5\}\text{has measure 0} \\
-&= 1 - \Phi(9/5),
+&= \Phi(-9/5) \text{ by } Z\sim N(0,1) \text{ and definition of } \Phi\\
+&= 1 - \Phi(9/5) \text{\, by symmetry of } \Phi
 \end{align*}
-since $Z\sim N(0,1)$.
+
+where the symmetry of $\Phi$ property was used already in lectures.
