@@ -14,8 +14,8 @@ heavy overlap with set theory
 
 | English | Slovenšcina |
 |---------|-------------|
-| ??? | nabor |
 | boundary condition | robni pogoj |
+| continuous random variable | zrezna slučajna spremenljivka
 | disjoint | disjunkt |
 | equals | je enako |
 | even, odd number | sod, liho število|
@@ -23,15 +23,20 @@ heavy overlap with set theory
 | heads, tails (coin) | glava, rep |
 | heads, tails (coin) | grb, cifra |
 | intersection | presek |
+| integer values | celoštevilni vrednosti
 | outcome | izid |
 | power / to the | potenza |
+| probability density function | porazdelitvena gostota |
+| set | nabor |
 | set of outcomes | množica izidov |
 | spade, heart, club, diamond | pika, srce, križ, kara |
 | urn | posoda |
 | variable | spremenljivka |
 | We claim ... | Trdimo ... |
 | We consider ... | Zamislimo si  ... |
+| We drain ... (deepl) | Odvajamo ... |
 | We denote ... | Oznacimo ... |
+| We take the derivative | Odvajamo ... |
 | We write ... | Zapišemo ... |
 | We write ... | Prepišemo ... |
 
@@ -39,6 +44,7 @@ heavy overlap with set theory
 
 | English | Slovenšcina |
 |---------|-------------|
+| integer values | celoštevilni vrednosti
 | disjoint | disjunkt |
 | event | dogodek |
 | heads, tails (coin) | glava, rep |
@@ -46,9 +52,11 @@ heavy overlap with set theory
 | outcome | izid |
 | equals | je enako |
 | set of outcomes | množica izidov |
-| ??? | nabor |
+| set | nabor |
+| We take the derivative | Odvajamo ... |
 | We denote ... | Oznacimo ... |
 | spade, heart, club, diamond | pika, srce, križ, kara |
+| probability density function | porazdelitvena gostota |
 | urn | posoda |
 | power / to the | potenza |
 | We write ... | Prepišemo ... |
@@ -59,3 +67,4 @@ heavy overlap with set theory
 | We claim ... | Trdimo ... |
 | We consider ... | Zamislimo si  ... |
 | We write ... | Zapišemo ... |
+| continuous random variable | zrezna slučajna spremenljivka
