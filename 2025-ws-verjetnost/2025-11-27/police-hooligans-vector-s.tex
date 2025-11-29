@@ -78,3 +78,57 @@ P(\xi_0=h)  &= \frac{\binom{r-1}{r-1}}{\binom{h+r}{r}} \\
 hence the independence equality condition does not hold, and the random variables are dependent.
 
 And the third, arguably cleverest counterexample would be like the first, but taking $P(\xi_0 = 2, \xi_=2) = 0$, while each of the marginals $P(\xi_j) = 1/3$.
+
+
+\subsubsection*{What about using the multinomial distribution?}
+
+Recall, that we define the multinomial distribution as follows. Consider an experiment with $r$ possible outcomes (a physical model was randomly throwing balls into $r$ buckets), and let $p_i$ be the probability of outcome $i$, the $p_i$ must satisfying
+
+\begin{align*}
+&0 \leq p_i \leq 1 \text { for each i} \\
+& \sum_{i=1}^{r} p_i = 1
+\end{align*}
+
+Assume further that we perform $n$ trials of this experiment independently, and define the random variable $X_i$ as the counts of outcome $i$ occurring.
+
+The \emph{multinomial distribution} is the distribution of the random vector
+
+\begin{equation*}
+X = (X_1, \ldots, X_r)
+\end{equation*}
+
+You proved in the lecture that, under the above assumptions about independence,
+
+\begin{equation*}
+P(X_1 = k_1, \ldots, X_r=k_r) = \frac{n!}{k_1! \cdot \ldots \cdot k_r!}p_1^{k_1} \cdots p_r^{k_r}
+\end{equation*}
+
+\noindent if $k_i \in \mathbb{N}, \sum k_i = n$, and 0 otherwise.
+
+\emph{Geometry side note}: The solutions to the above equations on the $p_i$ define a polytope in $R^{r}$, as they represent the solution space of $2 \times r$ linear inequalities (the conditions on the $p_i$) and one linear equality (total probability sums to 1).
+
+A few of you noticed that our count-the-hooligans-between-police exercise seems a natural fit for the multinomial distribution. First, let's adapt the notation to fit our exercise setup. It's a bit subtle, but we'll see that the multinomial distribution does not precisely fit our situation.
+
+In the police-hooligan situation, we would model the number of hooligans $\xi_0, \ldots, \xi_r$ as the counts of hooligans among $r+1$ buckets, with the $0^{th}$ bucket being the hooligans to the left of the first police officer, the $r^{th}$ bucket being the hooligans to the right of the final, $r^{th}$ officer, and the remaining $\xi_j$ being the count of hooligans between the $j^{th}$ and $(j+1)^{st}$ officer.
+
+If we knew the $p_i$, $0 \leq i \leq r$, then the solution to our problem would be
+
+\begin{equation*}
+P(\xi_0 = k_0, \ldots \xi_r = k_r) = \frac{h!}{k_0! \cdot \ldots \cdot k_r!}p_0^{k_0} \cdots p_r^{k_r}
+\end{equation*}
+
+It's tempting to now take the ``uniform'' assumption of the problem description to set $p_i = 1/(r+1)$, saying that landing in each bin (of police officers) if the same, which would give us a probability distribution depending non-trivially on the $k_0, \ldots, k_r$, in contradiction of our solution above.
+
+The first critical piece is that assuming fixed values for $p_i$ (whether equal to $1/(r + 1)$ for all, or something different for each) implies that the relative positions of the police officers on the line (which has $h+r$ places) are already fixed.
+
+The second critical difference is that the multinomial setup assumes a sequence of distinguishable trials or experiments (in case of throwing balls into buckets, a sequence of trials), whereas our police hooligan situation (as well as the original formulation of a well-shuffled deck of $h$ blue cards and $r$ red cards) assume indistinguishable trials.
+
+In other terms, the multinomial distribution applies to a sequence of distinguishable trials with $r$ possible outcomes for each trial, each outcome having a fixed probability, while our exercise set-up applies to a single trial (or sample) from a space of configurations.
+
+\emph{Physics side note}: In statistical physics, these two types of distributions go under the heading of \emph{Maxwell-Boltzmann}, or \emph{classical}, statistics for distinguishable, interactive particles (multinomial) vs the *Bose-Einstein*, or *quantum*,statistics for indistinguishable, non-interacting particles.
+
+This sentence from the \href{https://en.wikipedia.org/wiki/Particle_statistics#Quantum_statistics}{Wikipedia page about quantum statistics} highlights the key difference for our question: In quantum statistics, ``interchanging any two particles does not lead to a new configuration of the system''. Swapping hooligans or police officers doesn't change our configuration.
+
+\emph{Physics and geometry aside}: Maxwell-Boltzmann statistics assume that the particles satisfy the Boltzmann exclusion principle of no two particles being allowed to occupy the same physical space at the same time, whereas the Bose-Einstein statistics allow overlapping particles (like a Bose-Einstein condensate). Informally, our (Bose-Einstein) space of configurations of police officers and hooligans allow an arbitrary number of hooligans (limited only by the total number of hooligans) to fit into the space defined by officer positions, while a multinomial, Maxwell-Boltzmann setup would impose a fixed number of spots hooligans could fit into determined by the fixed positions of the police officers.
+
+\emph{Hollywood aside}: As far as I know, being familiar with Marvel's Quantum Realm / Multiverse movies, e.g. \emph{Ant Man}, yield no practical benefit to understanding actual quantum statistics.
