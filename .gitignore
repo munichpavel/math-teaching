@@ -12,5 +12,8 @@ _*.sh
 _*.md
 
 # Python
-
 __pycache__/
+
+# laTeX
+*.aux
+*.log
