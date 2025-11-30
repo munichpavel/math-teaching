@@ -7,7 +7,7 @@ If you are already comfortable with the ins and outs of integrating combined wit
 
 \subsubsection{Solution background}\label{sec:int-solution-background}
 
-In general, if $\psi: V \subseteq \mathbb{R} \to U = \psi(V) \subseteq \mathbb{R}$ is a continuous, 1x differentiable function with a well-defined inverse $\psi^{-1}$, and then the following integral $I$ can be written under the change of variable $\psi$ as
+In general, if $\psi: U \subseteq \mathbb{R} \to V = \psi(V) \subseteq \mathbb{R}$ is a continuous, 1x differentiable function with a well-defined inverse $\psi^{-1}$, and then the following integral $I$ can be written under the change of variable $\psi$ as
 
 \begin{equation}\label{eq:int-change-var}
 I = \int_{c}^{d} f(t) dt = \int_{\psi^{-1}(c)}^{\psi^{-1}(d)} f\left(\psi(s)\right) \frac{d \psi}{ds} ds
@@ -24,46 +24,44 @@ For calculations, we need to break the interval $[\psi^{-1}(c), \psi^{-1}(d)]$ (
 Now we return to our specific example, with
 
 \begin{align*}
-I &= I(x) = \int_{-\infty}^{x} f_X(s) ds \\
-&= \int_{0}^x \frac{c}{s^{3/2}} \exp\left(\frac{-1}{2s}\right) ds, &\text{as $f_X(s) = 0$ for $s \leq 0$,}
+I &= I(x) = \int_{-\infty}^{x} f_X(t) dt \\
+&= \int_{0}^x \frac{c}{t^{3/2}} \exp\left(\frac{-1}{2t}\right) dt, &\text{as $f_X(t) = 0$ for $t \leq 0$,}
 \end{align*}
 
 
-Since the probability distribution of $Z$ is $f_Z = \frac{\exp(-z^2)}{\sqrt{2 \pi}}$, we want a transformation whose inverse satisfies, for $t > 0$, $\frac{-1}{2 \psi(t)} = -\frac{t^2}{2}$.
+Since the probability distribution of $Z$ is $f_Z = \frac{\exp(-z^2)}{\sqrt{2 \pi}}$, we want a transformation satisfying, for $s > 0$, $\frac{-1}{2 \psi(s)} = -\frac{s^2}{2}$.
 Let's consider then
 \begin{equation*}
-(s = )\,\psi(t) = \frac{1}{t^2}
+(t = )\,\psi(s) = \frac{1}{s^2}
 \end{equation*}
 with first derivative
 
 \begin{align*}
-\frac{d}{dt} \psi(t) &= - \frac{1}{t^3}
+\frac{d}{ds} \psi(s) &= - \frac{1}{s^3}
 \end{align*}
 
 
 This function is continuous (and differentiable) on $(0, \infty)$. It is strictly monotonically decreasing there as well, so it is invertible, and has inverse
 
 \begin{equation*}
-(t = )\,\psi^{-1}(s) =  \frac{1}{\sqrt{s}}
+(s = )\,\psi^{-1}(t) =  \frac{1}{\sqrt{t}}
 \end{equation*}
 which is also at least once-differentiable on $(0, \infty)$.
 
-Since $\lim_{s \rightarrow 0^{+}} \psi^{-1}(t) = +\infty$, we write the integral using the change of variable $\psi$ now as
-
+Since $\lim_{t \rightarrow 0^{+}} \psi^{-1}(t) = +\infty$, we write the integral using the change of variable $\psi$ now as
 
 \begin{align*}
 I(x) &= c \int_{\infty}^{\frac{1}{\sqrt{x}}}
-\frac{1}{ \frac{1}{t^3}} \exp\left( \frac{-t^2}{2}\right) \left( -  \frac{1}{t^3} \right) dt \\
-&= -c \int_{\infty}^{\frac{1}{\sqrt{x}}} \exp\left( \frac{-t^2}{2}\right) dt \\
-&= c \int_{\frac{1}{\sqrt{x}}}^{\infty} \exp\left( \frac{-t^2}{2}\right) dt \\
-& = c \sqrt{2 \pi} \int_{\frac{1}{\sqrt{x}}}^{\infty} \frac{1}{\sqrt{2 \pi}} \exp\left( \frac{-t^2}{2}\right) dt \\
+\frac{1}{ \frac{1}{s^3}} \exp\left( \frac{-s^2}{2}\right) \left( -  \frac{1}{s^3} \right) ds \\
+&= -c \int_{\infty}^{\frac{1}{\sqrt{x}}} \exp\left( \frac{-s^2}{2}\right) ds \\
+&= c \int_{\frac{1}{\sqrt{x}}}^{\infty} \exp\left( \frac{-s^2}{2}\right) ds &\text{ by switching integration order } \\
+& = c \sqrt{2 \pi} \int_{\frac{1}{\sqrt{x}}}^{\infty} \frac{1}{\sqrt{2 \pi}} \exp\left( \frac{-s^2}{2}\right) ds \\
 & = c \sqrt{2 \pi} P\left(Z \geq \frac{1}{\sqrt{x}} \right)
 \end{align*}
+
 where the final equality holds due to the definition of $F_Z$ as
 
 \begin{equation*}
-F_Z(z) = P(Z \leq z) =  \int_{-\infty}^x 1/\sqrt{2 \pi} \exp^{-1 / 2 t^2} dt,
+F_Z(z) = P(Z \leq z) =  \int_{-\infty}^x 1/\sqrt{2 \pi} \exp^{-1 / 2 s^2} ds,
 \end{equation*}
 and using that $P(Z > z) = 1 - F_Z(z)$ together with $P(Z=z) = 0$ (set of measure zero).
-
-% \emph{Notation aside}: You might justifiable wonder why I chose to write $\phi$, and therefore calculate largely with its inverse, $\phi^{-1}$ rather than defining, say $\psi = \phi^{-1}$. My reason is that I first could easily remember and felt like I fully understood how to change variables in integrals when learning about the \emph{pullback} operator in differential geometry.
