@@ -1,0 +1,140 @@
+\documentclass[12pt]{article}
+\input{../common}
+
+\title{Probability Exercises, 2025-12-01}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\onehalfspacing % Set line spacing to 1.5
+
+\input{black-jacket-retrieval}
+\input{black-jacket-retrieval-s}
+
+\input{matrix-polya-pills}
+\input{matrix-polya-pills-s}
+
+\input{change-var-normal}
+\input{change-var-normal-s}
+
+
+% \section{Exercise (integral, transformation of continuous random variable)}
+
+% Let the continuous random variable $X$ be defined as having distribution
+
+
+% \begin{equation*}
+% f_X(x)=\left \{
+% \begin{array}{ll}
+% \frac{c}{x^{3/2}} \exp\left(\frac{-1}{2x}\right) & \mbox{for $x > 0$} \\
+% 0 & \mbox{otherwise} \\
+% \end{array}
+% \right .
+% \end{equation*}
+
+% where $c$ is some constant chosen so that $\int_{-\infty}^{\infty}f_X(x) = 1$.
+
+% Part 1: Show that, if $Z \sim N(0,1)$, for $x > 0$ we have
+
+% \begin{equation*}
+% F_X(x) = 2 P_Z\left(Z \geq \frac{1}{\sqrt{x}}\right).
+% \end{equation*}
+
+% \subsection*{A solution}
+
+% Note: as mentioned during tutorials, I have a tendency to be verbose. This level of explanatory detail is likely not required for full marks on an exam answer.
+
+% This problem can be solved by finding an appropriate change of variable, and then using this change of variable correctly to convert the integral corresponding to (the definition of) $F_X(x)$ as $F_X(x) = \int_{-\infty}^{x} f_X(s) ds$ into an integral that involves the probability distribution function of the standard normal random variable.
+% If you are already comfortable with the ins and outs of integrating combined with change of variables,  then feel free to skip head to Section \ref{sec:int-solution-only}.
+
+% \subsubsection{Solution background}\label{sec:int-solution-background}
+
+% In general, if $\phi: [a, b] \subseteq \mathbb{R} \to [\phi(a) , \phi(b)] \subseteq \mathbb{R}$ is a continuous, 1x differentiable function with a well-defined, at least once differentiable inverse $\phi^{-1}$, then the following integral $I$ can be written under the change of variable $\phi$ as
+
+% \begin{equation}\label{eq:int-change-var}
+% I = \int_{a}^{b} f(s) ds = \int_{\phi(a)}^{\phi(b)} f(\phi^{-1}(t)) \left( \frac{d \phi^{-1}}{dt} \right) dt
+% \end{equation}
+
+% \noindent In even greater generality, the above only need hold off a set of Lebesgue measure 0 in $[a, b]$.
+
+% Note: Equation (\ref{eq:int-change-var}) assumes we have a \textbf{signed integral}. For the original integral we have chosen $a < b$.
+% For the transformed version under $\phi$, it need not be the case that $\phi(a') \leq \phi(b')$ for all $a \leq a' < b \leq b'$.
+% For calculations, we need to break the interval $[\phi(a), \phi(b)]$ (or $[\phi(b), \phi(a)]$ if $\phi(a) \geq \phi(b)$) into subintervals $[a', b']$ where $\phi$ is either strictly non-increasing and non-decreasing, and then adjust the sign accordingly with a multiple of -1 if $\phi(a') > \phi(b')$.
+
+% Now we return to our specific example, with
+
+% \begin{align*}
+% I &= I(x) = \int_{-\infty}^{x} f_X(s) ds \\
+% &= \int_{0}^x \frac{c}{s^{3/2}} \exp\left(\frac{-1}{2s}\right) ds, &\text{as $f_X(s) = 0$ for $s \leq 0$,}
+% \end{align*}
+
+% \subsubsection{A solutions sans background}\label{sec:int-solution-only}
+% Since the probability distribution of $Z$ is $f_Z = \frac{\exp(-z^2)}{\sqrt{2 \pi}}$, we want a transformation whose inverse satisfies, for $t > 0$, $\frac{-1}{2 \phi^{-1}(t)} = -\frac{t^2}{2}$.
+% Let's consider then
+% \begin{equation*}
+% (s = )\,\phi^{-1}(t) = \frac{1}{t^2}
+% \end{equation*}
+% with first derivative
+
+% \begin{align*}
+% \frac{d}{dt} \phi^{-1}(t) &= - \frac{1}{t^3}
+% \end{align*}
+
+
+% This function is continuous (and differentiable) on $(0, \infty)$. It is strictly monotonically decreasing there as well, so it is invertible, and has inverse
+
+% \begin{equation*}
+% (t = )\,\phi(s) =  \frac{1}{\sqrt{s}}
+% \end{equation*}
+% which is also at least once-differentiable on $(0, \infty)$.
+
+% Since $\lim_{s \rightarrow 0^{+}} \phi(s) = 0$, we write the integral using the change of variable $\phi$ now as
+
+
+% \begin{align*}
+% I(x) &= c \int_{\infty}^{\frac{1}{\sqrt{x}}}
+% \frac{1}{ \frac{1}{t^3}} \exp\left( \frac{-t^2}{2}\right) \left( -  \frac{1}{t^3} \right) dt \\
+% &= -c \int_{\infty}^{\frac{1}{\sqrt{x}}} \exp\left( \frac{-t^2}{2}\right) dt \\
+% &= c \int_{\frac{1}{\sqrt{x}}}^{\infty} \exp\left( \frac{-t^2}{2}\right) dt \\
+% & = c \sqrt{2 \pi} \int_{\frac{1}{\sqrt{x}}}^{\infty} \frac{1}{\sqrt{2 \pi}} \exp\left( \frac{-t^2}{2}\right) dt \\
+% & = c \sqrt{2 \pi} P\left(Z \geq \frac{1}{\sqrt{x}} \right)
+% \end{align*}
+% where the final equality holds due to the definition of $F_Z$ as
+
+% \begin{equation*}
+% F_Z(z) = P(Z \leq z) =  \int_{-\infty}^x 1/\sqrt{2 \pi} \exp^{-1 / 2 t^2} df,
+% \end{equation*}
+% and using that $P(Z > z) = 1 - F_Z(z)$ together with $P(Z=z) = 0$ (set of measure zero).
+
+
+% % \begin{align*}
+% % I(x) &= c \sqrt{2 \pi} \left(1 - \int_{-\infty}^{\frac{1}{\sqrt{x}}} \frac{1}{\sqrt{2 \pi}} \exp\left( \frac{-t^2}{2}\right) dt \right) \\
+% % &= c \sqrt{2 \pi} \left( 1 - \Phi(\frac{1}{\sqrt{x}}) \right) \\
+% % &= c \sqrt{2 \pi} P\left(Z > \frac{1}{\sqrt{x}}\right) \\
+
+% % \end{align*}
+
+% % \begin{align*}
+% % I(x) &= c \int_{\infty}^{\left( \frac{\pi}{2} \right)^{1/4} \frac{1}{\sqrt{x}}} \frac{1}{\left( \frac{\pi}{2} \right)^{3/4} \frac{1}{t^3}} \exp\left( \frac{-1}{2 \sqrt{\frac{\pi}{2}} \frac{1}{t^2}}\right)\left( - \sqrt{2 \pi} \frac{1}{t^3} \right) dt \\
+% % &= -c \int_{\infty}^{\left( \frac{\pi}{2} \right)^{1/4} \frac{1}{\sqrt{x}}} \\
+% % \end{align*}
+
+% % \emph{Notation aside}: You might justifiably ask why I started with $\phi$
+% % since its inverse is $\phi^{-1}(t) = 1/t^2$, which, when substituted into the exponential, would give us a term $\exp\left(-1/ t^2\right)$ like with the probability density function of a normal distribution.
+
+
+% % and $\phi(s) = 1/s^2$. On the domain $(0, \infty)$, we are in the simpler situation of $\phi$ being strictly monotonically increasing and differentiable (actually, infinitely differentiable or \emph{smooth}, though we don't need that property here), so $\phi^{-1}(t)$ exists and is differentiable on the range of $\phi$, which also happens to be $(0, \infty)$.
+
+% % x Hence we don't need to worry about premultiplying with a factor of $-1$ to account for the signed integral of Equation (\ref{eq:int-change-var}).
+% % Furthermore, $f_X$ is a non-negative function by its definition as a probability density function (or equivalently, measure function).
+
+
+
+% % \begin{align*}
+% % I(x) &= c \int_{0}^{1/x^2} \frac{1}{} ds \\
+% % &= \int_{0}^x \frac{c}{s^{3/2}} \exp\left(\frac{-1}{2s}\right) ds, &\text{as $f_X(s) = 0$ for $s \leq 0$,}
+% % \end{align*}
+
+
+\end{document}
