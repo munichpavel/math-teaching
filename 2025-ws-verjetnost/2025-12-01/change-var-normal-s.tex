@@ -65,3 +65,14 @@ where the final equality holds due to the definition of $F_Z$ as
 F_Z(z) = P(Z \leq z) =  \int_{-\infty}^x 1/\sqrt{2 \pi} \exp^{-1 / 2 s^2} ds,
 \end{equation*}
 and using that $P(Z > z) = 1 - F_Z(z)$ together with $P(Z=z) = 0$ (set of measure zero).
+
+
+\emph{Notation aside}: I first could reliably remember and felt comfortable with the above integration-under-change-of-variable in the context of pull-backs in differential geometry (see e.g. J.M. Lee, Introduction to Smooth Manifolds, Chapter 6, especially Proposition 6.13).
+Even without getting into differential geometry and cotangent bundles, the types of diagrams used in that context might be helpful.\newline
+
+\begin{tikzcd}
+(a, b) \subseteq \mathbb{R} \arrow[rr,"\psi"] \arrow[drr,"f \circ \psi"] && (c, d) \subseteq \mathbb{R} \arrow[d,"f"]\\
+ &  & \mathbb{R}_{\geq 0}
+\end{tikzcd}
+
+In our current exercise context, the original integral on the right with $f$ turns out to be easier to calculate if we pull-it-back to $(a, b) = (\psi^{-1}(c), \psi^{-1}(d))$ and make sure we correctly handle the volume element $dt$, which is an example in differential geometry one-form.
