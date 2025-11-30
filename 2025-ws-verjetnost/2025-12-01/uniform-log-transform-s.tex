@@ -24,7 +24,7 @@ If $\exp(-\lambda y) > b$, we have $F_Y(y) =0 $. This condition is equivalent to
     &y < - \frac{1}{\lambda} \log(b), \text{ since $\lambda > 0$.}
 \end{align*}
 
-Next, if $ - \frac{1}{\lambda} \log(b) \leq y \leq - \frac{1}{\lambda} \log(b)$, we have $F_Y(y) = \frac{b - \exp(-\lambda y)}{b - a}$.
+Next, if $ - \frac{1}{\lambda} \log(b) \leq y \leq - \frac{1}{\lambda} \log(a)$, we have $F_Y(y) = \frac{b - \exp(-\lambda y)}{b - a}$.
 
 Finally, if $y > - \frac{1}{\lambda} \log(a)$, then the integral evaluates to $b - a$, and $F_Y(y) = 1$ for such $y$ values.
 
@@ -35,9 +35,9 @@ Putting the pieces together,
 F_Y(y)=
     \begin{cases}
         0 & \text{if } y < -\frac{1}{\lambda} \log(b) \\
-        \frac{b - \exp(-\lambda y)}{b - a} & \text{if }- \frac{1}{\lambda} \log(b) \leq y \leq - \frac{1}{\lambda} \log(b) \\
+        \frac{b - \exp(-\lambda y)}{b - a} & \text{if }- \frac{1}{\lambda} \log(b) \leq y \leq - \frac{1}{\lambda} \log(a) \\
         1 & \text {if } y > - \frac{1}{\lambda} \log(a).
     \end{cases}
 \end{equation}
 
-We notice that $Y$ is a shifted exponential distribution.
+The resulting  $Y$ is called a truncated exponential distribution.
