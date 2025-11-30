@@ -25,7 +25,7 @@ Now we return to our specific example, with
 
 \begin{align*}
 I &= I(x) = \int_{-\infty}^{x} f_X(t) dt \\
-&= \int_{0}^x \frac{c}{t^{3/2}} \exp\left(\frac{-1}{2t}\right) dt, &\text{as $f_X(t) = 0$ for $t \leq 0$,}
+&= \int_{0}^x \frac{1}{\sqrt{2}t^{3/2}} \exp\left(\frac{-1}{2t}\right) dt, &\text{as $f_X(t) = 0$ for $t \leq 0$,}
 \end{align*}
 
 
@@ -37,7 +37,7 @@ Let's consider then
 with first derivative
 
 \begin{align*}
-\frac{d}{ds} \psi(s) &= - \frac{1}{s^3}
+\frac{d}{ds} \psi(s) &= - \frac{2}{s^3}
 \end{align*}
 
 
@@ -51,18 +51,18 @@ which is also at least once-differentiable on $(0, \infty)$.
 Since $\lim_{t \rightarrow 0^{+}} \psi^{-1}(t) = +\infty$, we write the integral using the change of variable $\psi$ now as
 
 \begin{align*}
-I(x) &= c \int_{\infty}^{\frac{1}{\sqrt{x}}}
-\frac{1}{ \frac{1}{s^3}} \exp\left( \frac{-s^2}{2}\right) \left( -  \frac{1}{s^3} \right) ds \\
-&= -c \int_{\infty}^{\frac{1}{\sqrt{x}}} \exp\left( \frac{-s^2}{2}\right) ds \\
-&= c \int_{\frac{1}{\sqrt{x}}}^{\infty} \exp\left( \frac{-s^2}{2}\right) ds &\text{ by switching integration order } \\
-& = c \sqrt{2 \pi} \int_{\frac{1}{\sqrt{x}}}^{\infty} \frac{1}{\sqrt{2 \pi}} \exp\left( \frac{-s^2}{2}\right) ds \\
-& = c \sqrt{2 \pi} P\left(Z \geq \frac{1}{\sqrt{x}} \right)
+I(x) &= \frac{1}{\sqrt{2 \pi}} \int_{\infty}^{\frac{1}{\sqrt{x}}}
+\frac{1}{ \frac{1}{s^3}} \exp\left( \frac{-s^2}{2}\right) \left( -  \frac{2}{s^3} \right) ds \\
+&= -2 \frac{1}{\sqrt{2 \pi}} \int_{\infty}^{\frac{1}{\sqrt{x}}} \exp\left( \frac{-s^2}{2}\right) ds \\
+&= 2  \int_{\frac{1}{\sqrt{x}}}^{\infty} \frac{1}{\sqrt{2 \pi}} \exp\left( \frac{-s^2}{2}\right) ds &\text{ by switching integration order } \\
+& = 2 \int_{\frac{1}{\sqrt{x}}}^{\infty} \frac{1}{\sqrt{2 \pi}} \exp\left( \frac{-s^2}{2}\right) ds \\
+& = 2 P\left(Z \geq \frac{1}{\sqrt{x}} \right)
 \end{align*}
 
 where the final equality holds due to the definition of $F_Z$ as
 
 \begin{equation*}
-F_Z(z) = P(Z \leq z) =  \int_{-\infty}^x 1/\sqrt{2 \pi} \exp^{-1 / 2 s^2} ds,
+F_Z(z) = P(Z \leq z) =  \int_{-\infty}^x \frac{1}{\sqrt{2 \pi}} \exp^{-1 / 2 s^2} ds,
 \end{equation*}
 and using that $P(Z > z) = 1 - F_Z(z)$ together with $P(Z=z) = 0$ (set of measure zero).
 
