@@ -21,71 +21,55 @@
 \input{uniform-log-transform}
 \input{uniform-log-transform-s}
 
-% \subsubsection*{A solution}
+\subsection{Multivariable distribution, marginals, independence}
 
-% By definition of $Y$,
+Inspired by Ronald Meester, A Natural Introduction to Probability Theory, Example 2.4.10
 
-% \begin{align*}
-% F_Y(y) &= P_Y(Y \leq y) \\
-% &= P_X( -\frac{1}{\lambda} \log X \leq y) \\
-% &= P_X(\log X \geq -\lambda y) \text{, since $\lambda > 0$} \\
-% &= P_X(X \geq \exp(-\lambda y)) \text{, since $\exp$ preserves ordering on $\mathbb{R}$} \\
-% &= 1 - P(X \leq \exp(-\lambda y))
-% \end{align*}
+Let $(X, Y)$ have join distribution function
 
-% The probability density function of $U(a, b)$ is $\frac{s-a}{b-a} \cdot I_{s \in[a, b]}$, where here we mean $I$ as the indicator function ($=1$ for $s \in [a, b]$, otherwise 0).
-% Thus we have
 
-% \begin{align*}
-% F_Y(y) &= 1 - \int_{-\infty}^{\exp(-\lambda y)} \frac{s-a}{b-a} \cdot I_{s \in[a, b]} ds
-% \end{align*}
+\begin{equation*}
+P(X=k, Y=\ell) =
+    \begin{cases}
+        \frac{1}{2 \log 2} \frac{2^{-k}}{\ell} & \text{if }k \in \mathbb{N} \text{ and }\ell \in [1, k] \\
+        0 & \text{ otherwise.}
+    \end{cases}
+\end{equation*}
 
-% Since $0 \leq a < b \leq 1$, and $I_{s \in[a, b]}$ is 0 outside $[a, b]$, we'll define $F_Y$ piecewise depending on the values of $y$.
+Calculate
 
-% If the upper integral limit satisfies
+\begin{enumerate}
+\item The marginal distributions $P(X=k)$ and $P(Y=\ell)$
+\item Are X and Y independent?
+\end{enumerate}
 
-% \begin{align*}
-%     \exp(-\lambda y) &< a, \text{ which implies } \\
-%     -\lambda y &< \log(a), \text { since $\log$ preserves ordering on $\mathbb{R}$, giving} \\
-%     y &> - \frac{1}{\lambda} \log(a), \text{ since $\lambda < 0$,}
-% \end{align*}
-% then $F_Y(y) = 0$, because the indicator function is identically 0 across the range of integration.
+Hint: You may use that for $\ell \in \mathbb{N}$, $\sum_{k=\ell}^\infty \frac{1}{2^k} = \frac{1}{2^{\ell - 1}}$
 
-% Next consider $a \leq \exp(-\lambda y) \leq b$.
-% As above, this implies
+\subsubsection*{A solution}
 
-% \begin{equation*}
-% - \frac{1}{\lambda} \log(b) \leq y \leq - \frac{1}{\lambda} \log(a),
-% \end{equation*}
+First, we calculate $P(X=k)$:
 
-% and for such $y$ we have
+\begin{align*}
+P(X=k) &= \sum_{\ell = 1}^{\infty} P(X=k, Y=\ell) \\
+ &= \sum_{\ell = 1}^k P(X=k, Y=\ell) \\
+ &= \frac{1}{2 \log 2 } \frac{1}{2^k} \sum_{\ell = 1}^k \frac{1}{\ell}.
+\end{align*}
 
-% \begin{align*}
-% F_Y(y) &= 1 - \int_{a}^{\exp(-\lambda y)} \frac{s-a}{b-a} \cdot I_{s \in[a, b]} ds \\
-% &= 1 - \frac{\exp(-\lambda y) - a}{b - a} \\
-% &= \frac{b - \exp(-\lambda y)}{b - a}
-% \end{align*}
+The sum $\sum_{\ell = 1}^k \frac{1}{\ell}$ is called the $k^{th}$ harmonic number.
 
-% Finally, for $y < -\frac{1}{\lambda} \log(b)$, $F_Y(y) = 1$.
-% Putting the pieces together,
+Next, let's calculate $P(Y = \ell)$:
 
-% \begin{equation}
-% F_Y(y)=
-%     \begin{cases}
-%         1 & \text{if } y < -\frac{1}{\lambda} \log(b) \\
-%         \frac{b - \exp(-\lambda y)}{b - a} & \text{if }  - \frac{1}{\lambda} \log(b) \leq y \leq - \frac{1}{\lambda} \log(a) \\
-%         0 & \text{if } y > - \frac{1}{\lambda} \log(a)
-%     \end{cases}
-% \end{equation}
+\begin{align*}
+P(Y=\ell) &= \sum_{k = 1}^{\infty} P(X=k, Y=\ell) \\
+ &= \sum_{k = \ell}^{\infty} P(X=k, Y=\ell) \\
+&= \frac{1}{2 \log 2 } \frac{1}{\ell}\sum_{k = \ell}^{\infty}\frac{1}{2^k} \\
+&= \frac{1}{2 \log 2 } \frac{1}{\ell} \frac{1}{2^{\ell - 1}} \text{ by the hint}
+\end{align*}
 
-% \begin{equation}
-% \chi_{\mathbb{Q}}(x)=
-%     \begin{cases}
-%         1 & \text{if } x \in \mathbb{Q}\\
-%         0 & \text{if } x \in \mathbb{R}\setminus\mathbb{Q}
-%     \end{cases}
-% \end{equation}
 
+Are $X$ and $Y$ independent?
+
+Take $k = 1, \ell = 2$, then $P(X=1, Y=2) = 0$, but $P(X=1) > 0$ and $P(Y=2) > 0$, so they are dependent.
 
 
 \end{document}
