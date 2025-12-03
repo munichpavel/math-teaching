@@ -17,7 +17,14 @@ F_Y(y) &= \int_{\exp(-\lambda y)}^{\infty} \frac{1}{b-a} \cdot I_{s \in[a, b]} d
 &= \frac{1}{b - a} \int_{\exp(-\lambda y)}^{\infty} I_{s \in[a, b]} ds
 \end{align*}
 
-We consider now cases on $y$ values.
+We consider now cases on $y$ values, first informally in words, then in formulae.
+
+\begin{itemize}
+\item If the bottom integration limit is bigger than $b$, then we are integrating over an identically 0 function, and the integral is 0.
+\item If the bottom integration limit is between $a$ and $b$, then we have in integral whose value depends on the bottom integration limit.
+\item Finally, if the bottom integration limit is less than $a$ then we are integrating the indicator over its support (=where it's non-zero). Since this indicator function is normalized to 1 when integrating over its support, the integral evaluates to 1 in this case.
+\end{itemize}
+
 If $\exp(-\lambda y) > b$, we have $F_Y(y) =0 $. This condition is equivalent to
 \begin{align*}
     &-\lambda y > \log(b), \text { since $\log$ preserves ordering on $\mathbb{R}$, and} \\
