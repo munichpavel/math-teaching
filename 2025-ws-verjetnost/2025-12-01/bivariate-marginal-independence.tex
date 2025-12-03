@@ -1,0 +1,23 @@
+\subsection{Multivariable distribution, marginals, independence}
+
+Inspired by Ronald Meester, A Natural Introduction to Probability Theory, Example 2.4.10
+
+Let $(X, Y)$ have join distribution function
+
+
+\begin{equation*}
+P(X=k, Y=\ell) =
+    \begin{cases}
+        \frac{1}{2 \log 2} \frac{2^{-k}}{\ell} & \text{if }k \in \mathbb{N} \text{ and }\ell \in [1, k] \\
+        0 & \text{ otherwise.}
+    \end{cases}
+\end{equation*}
+
+Calculate
+
+\begin{enumerate}
+\item The marginal distributions $P(X=k)$ and $P(Y=\ell)$
+\item Are X and Y independent?
+\end{enumerate}
+
+Hint: You may use that for $\ell \in \mathbb{N}$, $\sum_{k=\ell}^\infty \frac{1}{2^k} = \frac{1}{2^{\ell - 1}}$

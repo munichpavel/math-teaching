@@ -1,0 +1,26 @@
+\subsubsection*{A solution}
+
+First, we calculate $P(X=k)$:
+
+\begin{align*}
+P(X=k) &= \sum_{\ell = 1}^{\infty} P(X=k, Y=\ell) \\
+ &= \sum_{\ell = 1}^k P(X=k, Y=\ell) \\
+ &= \frac{1}{2 \log 2 } \frac{1}{2^k} \sum_{\ell = 1}^k \frac{1}{\ell}.
+\end{align*}
+
+The sum $\sum_{\ell = 1}^k \frac{1}{\ell}$ is called the $k^{th}$ harmonic number.
+
+Next, let's calculate $P(Y = \ell)$:
+
+\begin{align*}
+P(Y=\ell) &= \sum_{k = 1}^{\infty} P(X=k, Y=\ell) \\
+ &= \sum_{k = \ell}^{\infty} P(X=k, Y=\ell) \\
+&= \frac{1}{2 \log 2 } \frac{1}{\ell}\sum_{k = \ell}^{\infty}\frac{1}{2^k} \\
+&= \frac{1}{2 \log 2 } \frac{1}{\ell} \frac{1}{2^{\ell - 1}} \text{ by the hint}
+\end{align*}
+
+
+Are $X$ and $Y$ independent?
+
+Take $k = 1, \ell = 2$, then $P(X=1, Y=2) = 0$, but $P(X=1) > 0$ and $P(Y=2) > 0$, so they are dependent.
+

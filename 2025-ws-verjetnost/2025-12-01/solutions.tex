@@ -21,55 +21,7 @@
 \input{uniform-log-transform}
 \input{uniform-log-transform-s}
 
-\subsection{Multivariable distribution, marginals, independence}
-
-Inspired by Ronald Meester, A Natural Introduction to Probability Theory, Example 2.4.10
-
-Let $(X, Y)$ have join distribution function
-
-
-\begin{equation*}
-P(X=k, Y=\ell) =
-    \begin{cases}
-        \frac{1}{2 \log 2} \frac{2^{-k}}{\ell} & \text{if }k \in \mathbb{N} \text{ and }\ell \in [1, k] \\
-        0 & \text{ otherwise.}
-    \end{cases}
-\end{equation*}
-
-Calculate
-
-\begin{enumerate}
-\item The marginal distributions $P(X=k)$ and $P(Y=\ell)$
-\item Are X and Y independent?
-\end{enumerate}
-
-Hint: You may use that for $\ell \in \mathbb{N}$, $\sum_{k=\ell}^\infty \frac{1}{2^k} = \frac{1}{2^{\ell - 1}}$
-
-\subsubsection*{A solution}
-
-First, we calculate $P(X=k)$:
-
-\begin{align*}
-P(X=k) &= \sum_{\ell = 1}^{\infty} P(X=k, Y=\ell) \\
- &= \sum_{\ell = 1}^k P(X=k, Y=\ell) \\
- &= \frac{1}{2 \log 2 } \frac{1}{2^k} \sum_{\ell = 1}^k \frac{1}{\ell}.
-\end{align*}
-
-The sum $\sum_{\ell = 1}^k \frac{1}{\ell}$ is called the $k^{th}$ harmonic number.
-
-Next, let's calculate $P(Y = \ell)$:
-
-\begin{align*}
-P(Y=\ell) &= \sum_{k = 1}^{\infty} P(X=k, Y=\ell) \\
- &= \sum_{k = \ell}^{\infty} P(X=k, Y=\ell) \\
-&= \frac{1}{2 \log 2 } \frac{1}{\ell}\sum_{k = \ell}^{\infty}\frac{1}{2^k} \\
-&= \frac{1}{2 \log 2 } \frac{1}{\ell} \frac{1}{2^{\ell - 1}} \text{ by the hint}
-\end{align*}
-
-
-Are $X$ and $Y$ independent?
-
-Take $k = 1, \ell = 2$, then $P(X=1, Y=2) = 0$, but $P(X=1) > 0$ and $P(Y=2) > 0$, so they are dependent.
-
+\input{bivariate-marginal-independence}
+\input{bivariate-marginal-independence-s}
 
 \end{document}
