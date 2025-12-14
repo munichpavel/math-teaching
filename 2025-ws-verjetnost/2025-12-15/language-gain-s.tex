@@ -1,0 +1,77 @@
+\subsection*{A solution}
+
+\begin{enumerate}
+\item To evaluate $c$, we solve for $c$ in
+
+\begin{align*}
+1 &= \sum_{ k=1 }^{4} \sum_{\ell = 1}^{4}P(X=k, Y=\ell) \\
+ &= c \sum_{k=1}^4 \left(\sum_{l=k}^4 (2 \ell - k) + \sum_{\ell=1}^{k - 1} 1 \right)
+\end{align*}
+
+
+\item For an arbitrary number of levels, $N$,
+
+\begin{align*}
+1 &= c \sum_{k=1}^N \left(\sum_{\ell=k}^N (2 \ell - k) + \sum_{\ell=1}^{k - 1} 1 \right)
+\end{align*}
+
+Let's fix $k$ and consider the inside summation,
+
+\begin{equation*}
+\sum_{\ell=k}^N (2 \ell - k) + \sum_{\ell=1}^{k - 1} 1
+\end{equation*}
+
+We call the remain-improve sub-sum for indices $\ell \geq k$ on the left of the $+$ sign, and the drop sub-sum when $\ell < k$ on the right. The drop sub-sum is simply counting the $k-1$ terms where the value is constant:
+\begin{equation*}
+\sum_{\ell=1}^{k - 1} 1 = k - 1
+\end{equation*}
+
+For the remain-improve sub-sum, we can simplify the calculation by splitting the summation:
+
+\begin{align*}
+\sum_{\ell=k}^N (2 \ell - k) &= 2 \sum_{\ell=k}^N \ell - \sum_{\ell=k}^N k \\
+&= 2 \left( \frac{(k+N)(N-k+1)}{2} \right) - k(N-k+1)
+\end{align*}
+
+Factoring out the common term $(N-k+1)$:
+
+\begin{align*}
+&= (N-k+1) [ (k+N) - k ] \\
+&= (N-k+1) N \\
+&= N^2 + N - Nk
+\end{align*}
+
+Combining the two parts (still for fixed $k$), the total inner sum is:
+
+\begin{align*}
+(N^2 + N - Nk) + (k - 1) &= N^2 + N - 1 - k(N - 1)
+\end{align*}
+
+We put this result back into the outer summation over $k$:
+
+\begin{align*}
+1 &= c \sum_{k=1}^N \left( (N^2 + N - 1) - k(N - 1) \right)
+\end{align*}
+
+Evaluate the sum by splitting the constant term and the $k$-dependent term:
+
+\begin{align*}
+1 &= c \left[ \sum_{k=1}^N (N^2 + N - 1) - (N - 1) \sum_{k=1}^N k \right] \\
+&= c \left[ N(N^2 + N - 1) - (N - 1) \frac{N(N+1)}{2} \right]
+\end{align*}
+
+Factor out $\frac{N}{2}$:
+
+\begin{align*}
+1 &= \frac{cN}{2} \left[ 2(N^2 + N - 1) - (N - 1)(N + 1) \right] \\
+&= \frac{cN}{2} \left[ 2N^2 + 2N - 2 - (N^2 - 1) \right] \\
+&= \frac{cN}{2} (N^2 + 2N - 1)
+\end{align*}
+
+Solving for $c$:
+
+\begin{equation*}
+c = \frac{2}{N(N^2 + 2N - 1)}
+\end{equation*}
+
+\end{enumerate}

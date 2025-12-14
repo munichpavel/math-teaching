@@ -1,0 +1,30 @@
+\section{Exercise: language gains (discrete multivariable, marginal, independence)}
+
+Assume we are given data from several years of participants in an intensive language program.
+At the beginning of each course, students are assessed for their starting level, and given a proficiency score of Novice, Intermediate, Advanced or Superior.
+At the end, they are also assessed. Per participant, the initial and final assessments are recorded.
+
+Let $X$ be the random variable corresponding to a randomly chosen student's start level.
+$X$ takes values $\{1, 2, 3, 4\}$, defined in bijection with the 4 ordered proficiency levels.
+
+Similarly, let $Y$ be the random variable corresponding to a randomly chosen student's level at the end of the program, again taking values in $\{1, \ldots, 4\}$.
+
+Assume we have estimated from the data that the probability distribution function of $(X, Y)$ is
+
+\begin{equation*}
+P(X=k, Y=\ell) =
+    \begin{cases}
+        c \cdot (2\ell - k) \quad \text{ if }\ell \geq k \\
+        c & \quad \text{ otherwise,}
+    \end{cases}
+\end{equation*}
+for some $c \in \mathbb{R}$.
+
+\begin{enumerate}
+\item Calculate the constant $c$.
+\item Now consider an arbitrary, finite number of levels, $N \in \mathbb{N}$. Calculate $c$ in this case.
+\item Marginal Distribution: Derive the marginal PMF for the Start Level, $p_X(x)$, for all $x \in \{1, 2, 3, 4\}$.
+\item Independence: Are the random variables $X$ and $Y$ independent? Justify your answer using the definition of independence for specific coordinates (e.g., compare $p_{X,Y}(4,1)$ with $p_X(4)p_Y(1)$).
+\item Probability of Regression: Calculate $P(Y < X)$. This represents the total probability that a student finishes at a lower level than they started.
+\item Conditional probability
+\end{enumerate}
