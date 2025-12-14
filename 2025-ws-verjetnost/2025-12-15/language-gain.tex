@@ -1,13 +1,14 @@
 \section{Exercise: language gains (discrete multivariable, marginal, independence)}
 
 Assume we are given data from several years of participants in an intensive language program.
-At the beginning of each course, students are assessed for their starting level, and given a proficiency score of Novice, Intermediate, Advanced or Superior.
-At the end, they are also assessed. Per participant, the initial and final assessments are recorded.
+At the beginning of each course, students are assessed for their starting level, and given a proficiency score on a scale from 1 to $N$. In reality, one scale with $N=4$ is Novice, Intermediate, Advanced or Superior, while there is a finer grained version of this scale with $N=10$ grades (low, intermediate and high for all but superior): https://www.languagetesting.com/actfl-proficiency-scale.
+At the end, the assessment is make again.
+Per participant, the initial and final assessments are recorded.
 
 Let $X$ be the random variable corresponding to a randomly chosen student's start level.
-$X$ takes values $\{1, 2, 3, 4\}$, defined in bijection with the 4 ordered proficiency levels.
+$X$ takes values $\{1, 2, 3, \ldots, N\}$, defined in bijection with the 4 ordered proficiency levels.
 
-Similarly, let $Y$ be the random variable corresponding to a randomly chosen student's level at the end of the program, again taking values in $\{1, \ldots, 4\}$.
+Similarly, let $Y$ be the random variable corresponding to a randomly chosen student's level at the end of the program, again taking values in $\{1, \ldots, N\}$.
 
 Assume we have estimated from the data that the probability distribution function of $(X, Y)$ is
 
@@ -22,9 +23,112 @@ for some $c \in \mathbb{R}$.
 
 \begin{enumerate}
 \item Calculate the constant $c$.
-\item Now consider an arbitrary, finite number of levels, $N \in \mathbb{N}$. Calculate $c$ in this case.
 \item Marginal Distribution: Derive the marginal PMF for the Start Level, $p_X(x)$, for all $x \in \{1, 2, 3, 4\}$.
 \item Independence: Are the random variables $X$ and $Y$ independent? Justify your answer using the definition of independence for specific coordinates (e.g., compare $p_{X,Y}(4,1)$ with $p_X(4)p_Y(1)$).
 \item Probability of Regression: Calculate $P(Y < X)$. This represents the total probability that a student finishes at a lower level than they started.
 \item Conditional probability
+
+We determine the constant $c$ by imposing the condition that the total volume under the probability density function (PDF) must equal 1. The domain is the unit square $[0,1] \times [0,1]$, partitioned into two regions: the "Growth" region ($\Omega_G$) where $y \geq x$, and the "Regression" region ($\Omega_R$) where $y < x$.
+
+The total probability is:
+$$\iint_{\Omega} f_{X,Y}(x,y) \, dx \, dy = \iint_{\Omega_G} c(2 - x - y) \, dA + \iint_{\Omega_R} \frac{c}{2} \, dA = 1$$
+
+Step 1: The Regression Region ($\Omega_R$)
+
+This is the lower triangle defined by $0 \le y < x \le 1$. The density is constant.
+$$I_R = \int_{0}^{1} \int_{0}^{x} \frac{c}{2} \, dy \, dx = \frac{c}{2} \int_{0}^{1} x \, dx = \frac{c}{2} \left[ \frac{x^2}{2} \right]_0^1 = \frac{c}{4}$$
+
+Step 2: The Growth Region ($\Omega_G$)
+This is the upper triangle defined by $0 \le x \le y \le 1$.
+$$I_G = c \int_{0}^{1} \int_{x}^{1} (2 - x - y) \, dy \, dx$$
+First, evaluate the inner integral with respect to $y$:
+$$\int_{x}^{1} (2 - x - y) \, dy = \left[ (2-x)y - \frac{y^2}{2} \right]_{x}^{1}$$
+Evaluating at limits $1$ and $x$:
+$$= \left( (2-x) - \frac{1}{2} \right) - \left( (2-x)x - \frac{x^2}{2} \right)$$
+$$= \frac{3}{2} - x - 2x + x^2 + \frac{x^2}{2} = \frac{3}{2}x^2 - 3x + \frac{3}{2} = \frac{3}{2}(1-x)^2$$
+Now, evaluate the outer integral with respect to $x$:
+
+\begin{align*}
+I_G = c \int_{0}^{1} \frac{3}{2}(1-x)^2 \, dx = \frac{3c}{2} \left[ -\frac{(1-x)^3}{3} \right]_0^1 = \frac{3c}{2} \left( 0 - \left(-\frac{1}{3}\right) \right) = \frac{c}{2}
+\end{align*}
+
+Step 3: Solve for $c$
+$$I_R + I_G = \frac{c}{4} + \frac{c}{2} = \frac{3c}{4}$$
+Setting the total probability to 1:
+$$\frac{3c}{4} = 1 \implies \mathbf{c = \frac{4}{3}}$$
+
+
+
+We wish to calculate the probability of improvement given a specific starting level $x$:
+$$P(Y > X \mid X = x) = \frac{\int_{x}^{1} f_{X,Y}(x,y) \, dy}{f_X(x)}$$
+where $f_X(x)$ is the marginal PDF of $X$.
+
+Step 1: The Numerator (Mass of Growth)
+From the previous problem (Step 2 inner integral), we know that for the growth region ($y \ge x$):
+$$\int_{x}^{1} c(2-x-y) \, dy = \frac{3c}{2}(1-x)^2$$
+Substituting $c = 4/3$:
+$$\text{Num}(x) = \frac{4}{3} \cdot \frac{3}{2}(1-x)^2 = 2(1-x)^2$$
+
+Step 2: The Denominator (Marginal PDF)
+The marginal density is the sum of the regression part and the growth part at the vertical slice $x$.
+$$f_X(x) = \int_{0}^{x} \frac{c}{2} \, dy + \int_{x}^{1} c(2-x-y) \, dy$$
+$$= \frac{4}{3} \left( \frac{x}{2} \right) + 2(1-x)^2 = \frac{2}{3}x + 2(1-x)^2$$
+
+Step 3: The Conditional Probability Function
+$$g(x) = P(Y > X \mid X = x) = \frac{2(1-x)^2}{\frac{2}{3}x + 2(1-x)^2}$$
+Multiplying numerator and denominator by 3 to simplify:
+$$g(x) = \frac{6(1-x)^2}{2x + 6(1-x)^2} = \frac{3(1-x)^2}{x + 3(1-x)^2}$$
+
+Step 4: Monotonicity Analysis
+To show this is decreasing, inspect the boundary behavior:
+
+\begin{itemize}
+\item at $x=0$, $g(0) = \frac{3(1)^2}{0 + 3} = 1$
+\item at $x=1$, $g(1) = \frac{0}{1 + 0} = 0$
+\end{itemize}
+
+Since the numerator $3(1-x)^2$ vanishes at $x=1$ while the denominator approaches $1$, and both are non-negative continuous functions on $[0,1]$, the probability of improvement strictly decreases from 100% to 0% as proficiency increases.
+
+\item
+
+
+Let $U = Y - X$ (Growth) and $V = X$ (Start Level).
+The inverse transformation is $X = V$ and $Y = U + V$.
+The Jacobian determinant is:
+$$J = \det \begin{pmatrix} \frac{\partial x}{\partial u} & \frac{\partial x}{\partial v} \\ \frac{\partial y}{\partial u} & \frac{\partial y}{\partial v} \end{pmatrix} = \det \begin{pmatrix} 0 & 1 \\ 1 & 1 \end{pmatrix} = -1 \implies |J| = 1$$
+
+The joint PDF in the new coordinates is:
+$$f_{U,V}(u,v) = f_{X,Y}(v, u+v) \cdot |J|$$
+The marginal PDF of growth, $f_U(u)$, is found by integrating out $v$. The support region depends on whether $u$ is positive (growth) or negative (regression).
+
+Case 1: Regression ($u < 0$)
+
+In the original coordinates, regression occurs when density is $c/2 = 2/3$.
+The condition $0 \le y \le x$ transforms to $0 \le u+v \le v$.
+Since $y \ge 0 \implies u+v \ge 0 \implies v \ge -u$.
+Since $x \le 1 \implies v \le 1$.
+So for a fixed negative $u$, $v$ ranges from $-u$ to $1$.
+
+$$f_U(u) = \int_{-u}^{1} \frac{2}{3} \, dv = \frac{2}{3} [v]_{-u}^{1} = \frac{2}{3}(1+u)$$
+
+Case 2: Growth ($u \ge 0$)
+
+The density is $c(2 - x - y) = \frac{4}{3}(2 - v - (u+v)) = \frac{4}{3}(2 - u - 2v)$.
+The condition $x \le y \le 1$ transforms to $v \le u+v \le 1$.
+Since $y \le 1 \implies u+v \le 1 \implies v \le 1-u$.
+Since $x \ge 0 \implies v \ge 0$.
+So for a fixed positive $u$, $v$ ranges from $0$ to $1-u$.
+
+$$f_U(u) = \int_{0}^{1-u} \frac{4}{3}(2 - u - 2v) \, dv$$
+$$= \frac{4}{3} \left[ (2-u)v - v^2 \right]_{0}^{1-u}$$
+$$= \frac{4}{3} \left( (2-u)(1-u) - (1-u)^2 \right)$$
+Factor out $(1-u)$:
+$$= \frac{4}{3} (1-u) [ (2-u) - (1-u) ] = \frac{4}{3}(1-u)[1] = \frac{4}{3}(1-u)$$
+
+Summary: The Marginal PDF of Growth
+
+$$f_U(u) = \begin{cases} \frac{2}{3}(1+u) & -1 \le u < 0 \\ \frac{4}{3}(1-u) & 0 \le u \le 1 \\ 0 & \text{otherwise} \end{cases}$$
+*Interpretation: The distribution is a "tented" shape peaking at $u=0$. The slope on the positive side is steeper than on the negative side, reflecting the higher probability density assigned to growth, but the tighter geometric constraints on large improvements.*
 \end{enumerate}
+
+
