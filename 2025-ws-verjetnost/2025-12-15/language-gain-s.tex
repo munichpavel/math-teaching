@@ -1,14 +1,6 @@
 \subsection*{A solution}
 
 \begin{enumerate}
-\item To evaluate $c$, we solve for $c$ in
-
-\begin{align*}
-1 &= \sum_{ k=1 }^{4} \sum_{\ell = 1}^{4}P(X=k, Y=\ell) \\
- &= c \sum_{k=1}^4 \left(\sum_{l=k}^4 (2 \ell - k) + \sum_{\ell=1}^{k - 1} 1 \right)
-\end{align*}
-
-
 \item For an arbitrary number of levels, $N$,
 
 \begin{align*}
@@ -72,6 +64,35 @@ Solving for $c$:
 
 \begin{equation*}
 c = \frac{2}{N(N^2 + 2N - 1)}
+\end{equation*}
+
+\item We calculate the conditional probability using the definition $P(Y=k+1 \mid X=k) = \frac{P(X=k, Y=k+1)}{P(X=k)}$.
+
+\textbf{Numerator:}
+Since $k+1 \geq k$, we use the first case of the joint distribution function with $\ell = k+1$:
+\begin{equation*}
+    P(X=k, Y=k+1) = c \cdot (2(k+1) - k) = c(2k + 2 - k) = c(k+2)
+\end{equation*}
+
+\textbf{Denominator:}
+The marginal probability $P(X=k)$ is the sum of the joint probabilities over all possible values of $Y$. We split the sum into the cases $\ell < k$ and $\ell \geq k$:
+\begin{align*}
+    P(X=k) &= \sum_{\ell=1}^{N} P(X=k, Y=\ell) \\
+    &= \sum_{\ell=1}^{k-1} c + \sum_{\ell=k}^{N} c(2\ell - k)
+\end{align*}
+Evaluating the sums (where the second sum has $N-k+1$ terms):
+\begin{align*}
+    P(X=k) &= c(k-1) + c\left[ 2\sum_{\ell=k}^{N} \ell - \sum_{\ell=k}^{N} k \right] \\
+    &= c(k-1) + c\left[ (N-k+1)(N+k) - k(N-k+1) \right] \\
+    &= c(k-1) + c\left[ (N-k+1)(N+k-k) \right] \\
+    &= c(k-1) + cN(N-k+1) \\
+    &= c(N^2 - Nk + N + k - 1)
+\end{align*}
+
+\textbf{Result:}
+Substituting the numerator and denominator back into the conditional probability formula (the constant $c$ cancels out):
+\begin{equation*}
+    P(Y=k+1 \mid X=k) = \frac{k+2}{N^2 - Nk + N + k - 1}
 \end{equation*}
 
 \end{enumerate}
