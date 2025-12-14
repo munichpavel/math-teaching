@@ -1,0 +1,28 @@
+\section{Exercise: Language gains, continuous model}
+
+We now model the proficiency scores as continuous random variables on the unit square. Let $X$ (Start Score) and $Y$ (End Score) be random variables with support $0 \le x, y \le 1$.
+
+We adopt a probability density function (PDF) that is weighted towards growth ($y \ge x$) but allows for non-zero probability of regression ($y < x$).
+The density decreases linearly as the combined score $(x+y)$ increases, reflecting the difficulty of maintaining high growth at high levels, which matches both the ACTFL pyramid infographic and empirical data.
+
+Let $(X, Y)$ be the multivariable distribution with density function
+\begin{equation*}
+f_{X,Y}(x,y) =
+\begin{cases}
+    c(2 - x - y) & \text{if } 0 \le x \le y \le 1 \\
+    \frac{c}{2} & \text{if } 0 \le y < x \le 1 \\
+    0 & \text{otherwise}
+\end{cases}
+\end{equation*}
+
+\begin{enumerate}
+    \item  Calculate the value of the normalization constant $c$ such that $f_{X,Y}(x,y)$.
+
+    \item Let $E$ be the event that a student improves their score ($Y > X$). Calculate the conditional probability of improvement given a specific start score $X=x$:
+    \begin{equation*}
+    g(x) = P(Y > X \mid X = x)
+    \end{equation*}
+
+    \item Show that the function $g(x)$ derived above is strictly decreasing for $x \in [0, 1]$. Interpret this result in the context of the language program.
+\end{enumerate}
+

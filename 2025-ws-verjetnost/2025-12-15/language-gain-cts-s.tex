@@ -1,0 +1,94 @@
+\subsection*{Solutions}
+
+\begin{enumerate}
+
+\item To find the constant $c$, we integrate the joint density function $f_{X,Y}(x,y)$ over the unit square $[0,1] \times [0,1]$. We split the integral into two regions based on the piecewise definition: the lower triangle ($y < x$) and the upper triangle ($y \geq x$).
+
+\begin{align*}
+    1 &= \iint_{S} f_{X,Y}(x,y) \, dy \, dx \\
+    &= \int_0^1 \int_0^x \frac{c}{2} \, dy \, dx + \int_0^1 \int_x^1 c(2 - x - y) \, dy \, dx
+\end{align*}
+
+\begin{figure}
+    \begin{center}
+    \includegraphics[width=0.8\linewidth]{cts-language-gain-integration-region}
+    \end{center}
+  \caption{Integration region for piecewise $f_{X,Y}(x,y)$}
+  \label{fig:language-gain-cts}
+\end{figure}
+
+Calculating the first integral (lower triangle):
+\begin{equation*}
+    L = c\int_0^1 \left(x/2 - 0 \right) dx = \frac{cx^2}{4} \bigg\rvert_0^1 = \frac{c}{4}
+\end{equation*}
+
+Calculating the second integral (upper triangle):
+\begin{align*}
+    R &= c \int_0^1 \left( 2y - xy - \frac{y^2}{2} \right) \bigg\rvert_{y=x}^1 dx \\
+    &= c \int_0^1 \left( 2 - x - 1/2 - 2x + x^2 + x^2 / 2\right) dx \\
+    &= c \int_0^1 \left( \frac{3x^2}{2}  - 3x + \frac{3}{2} \right) dx \\
+    &= c \left( \frac{x^3}{2} - \frac{3x^2}{2} + \frac{3x}{2}\right) \bigg\rvert_0^1 \\
+    & = \frac{c}{2}
+\end{align*}
+
+
+Summing them up:
+\begin{equation*}
+    1 = L + R = \frac{c}{4} + \frac{c}{2} = \frac{3c}{4} \implies c = \frac{4}{3}
+\end{equation*}
+
+\item We calculate the conditional probability $g(x) = P(Y > X \mid X = x)$ using the ratio of the conditional density mass where $y > x$ to the total marginal density at $x$.
+
+We calculate the conditional probability $g(x) = P(Y > X \mid X = x)$. By the definition of conditional probability for continuous variables, this is the ratio of the conditional density where the event holds ($Y > X$) to the total marginal density at $X=x$.
+
+The numerator represents the probability density accumulated specifically in the region where the student improves (where $y > x$), given their start score is fixed at $x$. Mathematically, we integrate the joint PDF $f_{X,Y}(x,y)$ with respect to $y$ strictly over the interval $(x, 1]$.
+
+In this range ($y \ge x$), the joint PDF is defined as $c(2 - x - y)$. Thus:
+\begin{align*}
+    \text{Numerator} &= \int_x^1 f_{X,Y}(x,y) \, dy \\
+    &= \int_x^1 c(2 - x - y) \, dy \\
+    &= c \frac{3}{2} (x^2 - 2x + 1) \text{ from our previous calculations}\\
+    &= c\frac{3}{2}(1-x)^2
+\end{align*}
+
+The denominator is the marginal density $f_X(x)$, which represents the total probability density of starting at $x$, regardless of the outcome $Y$. This is the sum of the density where scores decline ($y < x$) and where scores improve ($y \ge x$).
+\begin{align*}
+    f_X(x) &= \underbrace{\int_0^x \frac{c}{2} \, dy}_{\text{Decline ($y<x$)}} + \underbrace{\int_x^1 c(2 - x - y) \, dy}_{\text{Improvement ($y \ge x$)}} \\
+    &= \frac{cx}{2} + c \frac{3}{2}(1-x)^2
+\end{align*}
+
+
+Substituting these back into the conditional probability formula:
+\begin{align*}
+    g(x) &= \frac{\int_x^1 f_{X,Y}(x,y) \, dy}{f_X(x)} \\
+    &= \frac{c \frac{3}{2}(1-x)^2}{\frac{cx}{2} + c \frac{3}{2}(1-x)^2} \\
+    &=  \frac{3(1-x)^2}{x + 3(1-x)^2}
+\end{align*}
+
+
+\item
+We analyze the monotonicity of $g(x)$ for $x \in [0, 1]$. It is easier to analyze the reciprocal function $h(x) = 1/g(x)$:
+\begin{equation*}
+    h(x) = \frac{x + 3(1-x)^2}{3(1-x)^2} = 1 + \frac{x}{3(1-x)^2}
+\end{equation*}
+Let $k(x) = \frac{x}{(1-x)^2}$. Taking the derivative with respect to $x$:
+\begin{align*}
+    k'(x) &= \frac{1 \cdot (1-x)^2 - x \cdot 2(1-x)(-1)}{(1-x)^4} \\
+    &= \frac{(1-x) + 2x}{(1-x)^3} \\
+    &= \frac{1+x}{(1-x)^3}
+\end{align*}
+For $x \in [0, 1)$, $k'(x)$ is strictly positive, meaning $h(x)$ is strictly increasing. Therefore, $g(x)$ is \textit{strictly decreasing}.
+
+The function $g(x)$ represents the probability that a student improves their score given their starting level. The fact that $g(x)$ is strictly decreasing implies that beginners are much more likely to show improvement than advanced students.
+
+This continuous model aligns more closely with the inverted ACTFL language gain pyramid we saw before:
+
+\begin{figure}
+    \begin{center}
+    \includegraphics[width=0.8\linewidth]{actfl-pyramid}
+    \end{center}
+  \caption{Infographic depicting inverted language gain pyramid from \href{https://www.languagetesting.com/actfl-proficiency-scale}{https://www.languagetesting.com/actfl-proficiency-scale}}
+  \label{fig:actfl-pyramid}
+\end{figure}
+
+\end{enumerate}
